@@ -12,6 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+// AML These symbols cannot be found at compile time
+//  symbol  : variable CommonConfigurationKeysPublic
+//  symbol  : variable CommonConfigurationKeysPublic
+//  symbol  : variable DFS_HDFS_BLOCKS_METADATA_ENABLED
+//  symbol  : variable DFS_HDFS_BLOCKS_METADATA_ENABLED_DEFAULT
+//  symbol  : method isDirectory()
+//  symbol  : class BlockStorageLocation
+//  symbol  : method getFileBlockStorageLocations(java.util.List<org.apache.hadoop.fs.BlockLocation>)
+//  symbol  : class VolumeId
+
 package com.cloudera.impala.catalog;
 
 import java.io.IOException;
@@ -26,12 +36,12 @@ import java.util.Set;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.BlockLocation;
-import org.apache.hadoop.fs.BlockStorageLocation;
-import org.apache.hadoop.fs.CommonConfigurationKeysPublic;
+// AML import org.apache.hadoop.fs.BlockStorageLocation;
+// AML import org.apache.hadoop.fs.CommonConfigurationKeysPublic;
 import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.fs.VolumeId;
+// AML import org.apache.hadoop.fs.VolumeId;
 import org.apache.hadoop.hbase.util.Bytes;
 import org.apache.hadoop.hdfs.DFSConfigKeys;
 import org.apache.hadoop.hdfs.DistributedFileSystem;
@@ -256,21 +266,27 @@ public class HdfsTable extends Table {
       // call newInstance() instead of using a shared instance from a cache
       // to avoid accidentally having it closed by someone else
       FileSystem fs = FileSystem.newInstance(FileSystem.getDefaultUri(CONF), CONF);
-      if (!(fs instanceof DistributedFileSystem)) {
-        String error = "Cannot connect to HDFS. " +
-            CommonConfigurationKeysPublic.FS_DEFAULT_NAME_KEY +
-            "(" + CONF.get(CommonConfigurationKeysPublic.FS_DEFAULT_NAME_KEY) + ")" +
-            " might be set incorrectly";
-        throw new RuntimeException(error);
-      }
-      DFS = (DistributedFileSystem)fs;
+// AML - Our fs is instanceof MapRFileSystem, not DistributedFileSystem
+//      if (!(fs instanceof DistributedFileSystem)) {
+//        String error = "Cannot connect to HDFS. " +
+//            CommonConfigurationKeysPublic.FS_DEFAULT_NAME_KEY +
+//            "(" + CONF.get(CommonConfigurationKeysPublic.FS_DEFAULT_NAME_KEY) + ")" +
+//            " might be set incorrectly";
+//        throw new RuntimeException(error);
+//      }
+
+// AML - Don't caste fs to DistributedFileSystem
+      DFS = /* AML (DistributedFileSystem)*/ fs;
     } catch (IOException e) {
       throw new RuntimeException("couldn't retrieve FileSystem:\n" + e.getMessage(), e);
     }
 
     SUPPORTS_VOLUME_ID =
-        CONF.getBoolean(DFSConfigKeys.DFS_HDFS_BLOCKS_METADATA_ENABLED,
-                        DFSConfigKeys.DFS_HDFS_BLOCKS_METADATA_ENABLED_DEFAULT);
+// AML - Always do not support VolumeId
+       false;
+//        CONF.getBoolean(DFSConfigKeys.DFS_HDFS_BLOCKS_METADATA_ENABLED,
+//                        DFSConfigKeys.DFS_HDFS_BLOCKS_METADATA_ENABLED_DEFAULT);
+
   }
 
   /**
@@ -278,27 +294,28 @@ public class HdfsTable extends Table {
    *  There is currently no public API to get at the volume id.  We'll have to get it
    *  by accessing the internals.
    */
-  private static int getDiskId(VolumeId hdfsVolumeId) {
-    // Initialize the diskId as -1 to indicate it is unknown
-    int diskId = -1;
-
-    if (hdfsVolumeId != null && hdfsVolumeId.isValid()) {
-      // TODO: this is a hack and we'll have to address this by getting the
-      // public API.  Also, we need to be very mindful of this when we change
-      // the version of HDFS.
-      String volumeIdString = hdfsVolumeId.toString();
-      // This is the hacky part.  The toString is currently the underlying id
-      // encoded in base64.
-      byte[] volumeIdBytes = Base64.decodeBase64(volumeIdString);
-      if (volumeIdBytes.length == 4) {
-        diskId = Bytes.toInt(volumeIdBytes);
-      } else if (!hasLoggedDiskIdFormatWarning) {
-        LOG.warn("wrong disk id format: " + volumeIdString);
-        hasLoggedDiskIdFormatWarning = true;
-      }
-    }
-    return diskId;
-  }
+// AML - This method's invocation is commented out later
+//  private static int getDiskId(VolumeId hdfsVolumeId) {
+//    // Initialize the diskId as -1 to indicate it is unknown
+//    int diskId = -1;
+//
+//    if (hdfsVolumeId != null && hdfsVolumeId.isValid()) {
+//      // TODO: this is a hack and we'll have to address this by getting the
+//      // public API.  Also, we need to be very mindful of this when we change
+//      // the version of HDFS.
+//      String volumeIdString = hdfsVolumeId.toString();
+//      // This is the hacky part.  The toString is currently the underlying id
+//      // encoded in base64.
+//      byte[] volumeIdBytes = Base64.decodeBase64(volumeIdString);
+//      if (volumeIdBytes.length == 4) {
+//        diskId = Bytes.toInt(volumeIdBytes);
+//      } else if (!hasLoggedDiskIdFormatWarning) {
+//        LOG.warn("wrong disk id format: " + volumeIdString);
+//        hasLoggedDiskIdFormatWarning = true;
+//      }
+//    }
+//    return diskId;
+//  }
 
   /**
    * Populate partitionBlockMd based on 'partitions'.
@@ -350,7 +367,8 @@ public class HdfsTable extends Table {
           // created as a subdirectory of a partition dir we should ignore it and move on
           // (getFileBlockLocations will throw when
           // called on a directory). Hive will not recurse into directories.
-          if (!fileStatus.isDirectory()) {
+// AML - MapR FileStatus uses deprecated isDir rather than isDirectory
+          if (!fileStatus.isDir/*AML ectory*/()) {
             locations = DFS.getFileBlockLocations(fileStatus, 0, fileStatus.getLen());
           }
           if (locations != null) {
@@ -374,53 +392,58 @@ public class HdfsTable extends Table {
       return;
     }
 
-    // BlockStorageLocations for all the blocks
-    // block described by blockMetadataList[i] is located at locations[i]
-    BlockStorageLocation[] locations = null;
-    try {
-      // Get the BlockStorageLocations for all the blocks
-      locations = DFS.getFileBlockStorageLocations(blockLocations);
-    } catch (IOException e) {
-      LOG.error("Couldn't determine block storage locations:\n" + e.getMessage());
-      return;
-    }
-
-    if (locations == null || locations.length == 0) {
-      LOG.warn("Attempted to get block locations but the call returned nulls");
-      return;
-    }
-
-    if (locations.length != blockLocations.size()) {
-      // blocks and locations don't match up
-      LOG.error("Number of block locations not equal to number of blocks: "
-          + "#locations=" + Long.toString(locations.length)
-          + " #blocks=" + Long.toString(blockLocations.size()));
-      return;
-    }
-
-    int locationsIdx = 0;
-    int unknownDiskIdCount = 0;
-    for (PartitionBlockMetadata partitionBlockMd: partitionBlockMdList) {
-      for (BlockMetadata blockMd: partitionBlockMd.getBlockMetadata()) {
-        VolumeId[] volumeIds = locations[locationsIdx++].getVolumeIds();
-        // Convert opaque VolumeId to 0 based ids.
-        // TODO: the diskId should be eventually retrievable from Hdfs when
-        // the community agrees this API is useful.
-        int[] diskIds = new int[volumeIds.length];
-        for (int i = 0; i < volumeIds.length; ++i) {
-          diskIds[i] = getDiskId(volumeIds[i]);
-          if (diskIds[i] < 0) {
-            ++unknownDiskIdCount;
-          }
-        }
-        blockMd.setDiskIds(diskIds);
-      }
-    }
-    LOG.info("loaded disk ids for table " + getFullName());
-    LOG.info(Integer.toString(getNumNodes()));
-    if (unknownDiskIdCount > 0) {
-      LOG.warn("unknown disk id count " + unknownDiskIdCount);
-    }
+// AML We'll never get here without VolumeId support but this won't compile
+//     without us providing dummy versions of:
+//     o BlockStorageLocation
+//     o VolumeId
+//
+//    // BlockStorageLocations for all the blocks
+//    // block described by blockMetadataList[i] is located at locations[i]
+//    BlockStorageLocation[] locations = null;
+//    try {
+//      // Get the BlockStorageLocations for all the blocks
+//      locations = DFS.getFileBlockStorageLocations(blockLocations);
+//    } catch (IOException e) {
+//      LOG.error("Couldn't determine block storage locations:\n" + e.getMessage());
+//      return;
+//    }
+//
+//    if (locations == null || locations.length == 0) {
+//      LOG.warn("Attempted to get block locations but the call returned nulls");
+//      return;
+//    }
+//
+//    if (locations.length != blockLocations.size()) {
+//      // blocks and locations don't match up
+//      LOG.error("Number of block locations not equal to number of blocks: "
+//          + "#locations=" + Long.toString(locations.length)
+//          + " #blocks=" + Long.toString(blockLocations.size()));
+//      return;
+//    }
+//
+//    int locationsIdx = 0;
+//    int unknownDiskIdCount = 0;
+//    for (PartitionBlockMetadata partitionBlockMd: partitionBlockMdList) {
+//      for (BlockMetadata blockMd: partitionBlockMd.getBlockMetadata()) {
+//        VolumeId[] volumeIds = locations[locationsIdx++].getVolumeIds();
+//        // Convert opaque VolumeId to 0 based ids.
+//        // TODO: the diskId should be eventually retrievable from Hdfs when
+//        // the community agrees this API is useful.
+//        int[] diskIds = new int[volumeIds.length];
+//        for (int i = 0; i < volumeIds.length; ++i) {
+//          diskIds[i] = getDiskId(volumeIds[i]);
+//          if (diskIds[i] < 0) {
+//            ++unknownDiskIdCount;
+//          }
+//        }
+//        blockMd.setDiskIds(diskIds);
+//      }
+//    }
+//    LOG.info("loaded disk ids for table " + getFullName());
+//    LOG.info(Integer.toString(getNumNodes()));
+//    if (unknownDiskIdCount > 0) {
+//      LOG.warn("unknown disk id count " + unknownDiskIdCount);
+//    }
   }
 
   /**
