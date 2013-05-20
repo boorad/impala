@@ -17,6 +17,8 @@ cmake_install.cmake
 CTestTestfile.cmake
 !CMakeLists.txt
 
+JNILists.txt
+
 Testing/
 llvm-ir/
 shell/gen-py/
