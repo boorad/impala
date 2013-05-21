@@ -72,13 +72,17 @@ GFLAGS_INSTALL=`pwd`/third-party-install
 ./configure --with-pic --prefix=${GFLAGS_INSTALL}
 make -j4 install
 
-# Build pprof
-cd $IMPALA_HOME/thirdparty/gperftools-${IMPALA_GPERFTOOLS_VERSION}
-# TODO: google perf tools indicates this might be necessary on 64 bit systems.
-# we're not compiling the rest of our code to not omit frame pointers but it
-# still seems to generate useful profiling data.
-./configure --enable-frame-pointers --with-pic
-make -j4
+# BSA - because of
+#       https://groups.google.com/forum/?fromgroups#!topic/google-perftools/5O7pyQ-xXmk
+#       I copied gperftools folder locally (so it wasn't a Vagrant shared folder)
+#       Then, re-run ./configure && make && sudo make install
+## Build pprof
+#cd $IMPALA_HOME/thirdparty/gperftools-${IMPALA_GPERFTOOLS_VERSION}
+## TODO: google perf tools indicates this might be necessary on 64 bit systems.
+## we're not compiling the rest of our code to not omit frame pointers but it
+## still seems to generate useful profiling data.
+#./configure --enable-frame-pointers --with-pic
+#make -j4
 
 # Build glog
 cd $IMPALA_HOME/thirdparty/glog-${IMPALA_GLOG_VERSION}
@@ -114,8 +118,8 @@ if [ -z "$USE_PIC_LIB_PATH" ]; then
   CFLAGS="-fPIC -DPIC" CXXFLAGS="-fPIC -DPIC" ./configure \
     --disable-digest --disable-sql --disable-cram --disable-ldap \
     --disable-digest --disable-otp  \
-    --prefix=$IMPALA_HOME/thirdparty/cyrus-sasl-${IMPALA_CYRUS_SASL_VERSION}/build \
-    --enable-static --enable-staticdlopen
+    --prefix=$IMPALA_HOME/thirdparty/cyrus-sasl-${IMPALA_CYRUS_SASL_VERSION}/build #\
+#    --enable-static --enable-staticdlopen
   # the first time you do a make it fails, ignore the error.
   (make || true)
   make install
