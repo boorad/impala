@@ -20,8 +20,8 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>com.cloudera</groupId>
-    <artifactId>parent</artifactId>
+    <groupId>com.mapr</groupId>
+    <artifactId>mapr-root</artifactId>
     <version>1.0</version>
   </parent>
   <groupId>com.cloudera.impala</groupId>
@@ -56,13 +56,27 @@
     </dependency>
 
     <dependency>
+      <groupId>com.mapr.hadoop</groupId>
+      <artifactId>maprfs</artifactId>
+      <version>${hadoop.version}</version>
+      <!-- AML
+      <scope>system</scope>
+      <systemPath>${env.IMPALA_HOME}/thirdparty/hadoop-${hadoop.version}/share/hadoop/hdfs/hadoop-hdfs-${hadoop.version}.jar</systemPath>
+      AML -->
+    </dependency>
+    <dependency>
+      <groupId>org.apache.hadoop</groupId>
+      <artifactId>hadoop-core</artifactId>
+      <version>${hadoop.version}</version>
+    </dependency>
+<!-- AML
+    <dependency>
       <groupId>org.apache.hadoop</groupId>
       <artifactId>hadoop-hdfs</artifactId>
       <version>${hadoop.version}</version>
       <scope>system</scope>
       <systemPath>${env.IMPALA_HOME}/thirdparty/hadoop-${hadoop.version}/share/hadoop/hdfs/hadoop-hdfs-${hadoop.version}.jar</systemPath>
     </dependency>
-
     <dependency>
       <groupId>org.apache.hadoop</groupId>
       <artifactId>hadoop-common</artifactId>
@@ -79,6 +93,7 @@
       <systemPath>${env.IMPALA_HOME}/thirdparty/hadoop-${hadoop.version}/share/hadoop/common/lib/hadoop-auth-${hadoop.version}.jar</systemPath>
     </dependency>
 
+AML -->
     <dependency>
       <groupId>net.sf.squirrel-sql.thirdparty-non-maven</groupId>
       <artifactId>java-cup</artifactId>
@@ -111,12 +126,13 @@
       <version>${hbase.version}</version>
     </dependency>
 
+<!-- AML just use our core.  This is a 0.23 artifact
     <dependency>
       <groupId>org.apache.hadoop</groupId>
       <artifactId>hadoop-mapreduce-client-core</artifactId>
       <version>${hadoop.version}</version>
     </dependency>
-
+-->
     <dependency>
       <groupId>org.apache.hive</groupId>
       <artifactId>hive-metastore</artifactId>
@@ -481,6 +497,29 @@
 
   <repositories>
     <repository>
+      <id>mapr-releases</id>
+      <url>http://repository.mapr.com/maven</url>
+      <name>MapR Release Repository</name>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+    </repository>
+    <repository>
+      <id>mapr-private-releases</id>
+      <url>http://10.10.100.99/nexus/content/groups/public/</url>
+      <name>MapR Private Release Repository</name>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+    </repository>
+<!-- AML
+    <repository>
       <id>cdh.rcs.releases.repo</id>
       <url>https://repository.cloudera.com/content/groups/cdh-releases-rcs</url>
       <name>CDH Releases Repository</name>
@@ -504,6 +543,7 @@
         <enabled>true</enabled>
       </snapshots>
     </repository>
+AML -->
     <repository>
       <id>cloudera.thirdparty.repo</id>
       <url>https://repository.cloudera.com/content/repositories/third-party</url>
@@ -514,6 +554,7 @@
     </repository>
   </repositories>
 
+<!-- AML This is needed for /net/sourceforge/czt -->
   <pluginRepositories>
     <pluginRepository>
       <id>cloudera.thirdparty.repo</id>
@@ -523,6 +564,7 @@
         <enabled>false</enabled>
       </snapshots>
     </pluginRepository>
+<!-- AML
     <pluginRepository>
       <id>cloudera.snapshot.repo</id>
       <url>https://repository.cloudera.com/content/repositories/snapshots</url>
@@ -531,6 +573,7 @@
         <enabled>true</enabled>
       </snapshots>
     </pluginRepository>
+AML -->
 
     <pluginRepository>
       <id>dtrott</id>
