@@ -30,12 +30,44 @@ set -e
 USE_PIC_LIB_PATH=${PIC_LIB_PATH:-}
 
 clean_action=1
+thrift_action=1
+gflags_action=1
+gperftools_action=1
+glog_action=1
+gtest_action=1
+snappy_action=1
+sasl_action=1
+avro_action=1
 
 for ARG in $*
 do
   case "$ARG" in
     -noclean)
       clean_action=0
+      ;;
+    -nothrift)
+      thrift_action=0
+      ;;
+    -nogflags)
+      gflags_action=0
+      ;;
+    -nogperftools)
+      gperftools_action=0
+      ;;
+    -noglog)
+      glog_action=0
+      ;;
+    -nogtest)
+      gtest_action=0
+      ;;
+    -nosnappy)
+      snappy_action=0
+      ;;
+    -nosasl)
+      sasl_action=0
+      ;;
+    -noavro)
+      avro_action=0
       ;;
   esac
 done
@@ -48,84 +80,105 @@ then
   git clean -dfx
 fi
 
-# build thrift
-cd ${THRIFT_SRC_DIR}
-JAVA_PREFIX=${THRIFT_HOME}/java PY_PREFIX=${THRIFT_HOME}/python \
-  ./configure --with-pic --prefix=${THRIFT_HOME} \
-  --with-php=no --with-java=no --with-perl=no --with-erlang=no \
-  --with-ruby=no --with-haskell=no --with-erlang=no --with-d=no \
-  --with-qt4=no
-make # Make with -j fails
-make install
-cd ${THRIFT_SRC_DIR}/contrib/fb303
-chmod 755 ./bootstrap.sh
-./bootstrap.sh
-chmod 755 configure
-CPPFLAGS="-I${THRIFT_HOME}/include" PY_PREFIX=${THRIFT_HOME}/python ./configure \
-  --prefix=${THRIFT_HOME} --with-thriftpath=${THRIFT_HOME}
-make
-make install
-
-# build gflags
-cd $IMPALA_HOME/thirdparty/gflags-${IMPALA_GFLAGS_VERSION}
-GFLAGS_INSTALL=`pwd`/third-party-install
-./configure --with-pic --prefix=${GFLAGS_INSTALL}
-make -j4 install
-
-# BSA - because of
-#       https://groups.google.com/forum/?fromgroups#!topic/google-perftools/5O7pyQ-xXmk
-#       I copied gperftools folder locally (so it wasn't a Vagrant shared folder)
-#       Then, re-run ./configure && make && sudo make install
-## Build pprof
-#cd $IMPALA_HOME/thirdparty/gperftools-${IMPALA_GPERFTOOLS_VERSION}
-## TODO: google perf tools indicates this might be necessary on 64 bit systems.
-## we're not compiling the rest of our code to not omit frame pointers but it
-## still seems to generate useful profiling data.
-#./configure --enable-frame-pointers --with-pic
-#make -j4
-
-# Build glog
-cd $IMPALA_HOME/thirdparty/glog-${IMPALA_GLOG_VERSION}
-./configure --with-pic --with-gflags=${GFLAGS_INSTALL}
-
-# SLES's gcc45-c++ is required for sse2 support (default is 4.3), but crashes
-# when building logging_unittest-logging_unittest.o. Telling it to uses the
-# stabs format for debugging symbols instead of dwarf exercises a different
-# code path to work around this issue.
-cat > Makefile.gcc45sles_workaround <<EOF
-logging_unittest-logging_unittest.o : CXXFLAGS= -gstabs -O2
-EOF
-cat Makefile >> Makefile.gcc45sles_workaround
-mv Makefile.gcc45sles_workaround Makefile
-
-make -j4
-
-# Build gtest
-cd $IMPALA_HOME/thirdparty/gtest-${IMPALA_GTEST_VERSION}
-cmake .
-make -j4
-
-# Build Snappy
-cd $IMPALA_HOME/thirdparty/snappy-${IMPALA_SNAPPY_VERSION}
-./configure --with-pic --prefix=$IMPALA_HOME/thirdparty/snappy-${IMPALA_SNAPPY_VERSION}/build
-make install
-
-if [ -z "$USE_PIC_LIB_PATH" ]; then
-  # Build Sasl
-  # Disable everything except those protocols needed -- currently just Kerberos.
-  # Sasl does not have a --with-pic configuration.
-  cd $IMPALA_HOME/thirdparty/cyrus-sasl-${IMPALA_CYRUS_SASL_VERSION}
-  CFLAGS="-fPIC -DPIC" CXXFLAGS="-fPIC -DPIC" ./configure \
-    --disable-digest --disable-sql --disable-cram --disable-ldap \
-    --disable-digest --disable-otp  \
-    --prefix=$IMPALA_HOME/thirdparty/cyrus-sasl-${IMPALA_CYRUS_SASL_VERSION}/build #\
-#    --enable-static --enable-staticdlopen
-  # the first time you do a make it fails, ignore the error.
-  (make || true)
+if [ $thrift_action -eq 1 ]
+then
+  # build thrift
+  cd ${THRIFT_SRC_DIR}
+  JAVA_PREFIX=${THRIFT_HOME}/java PY_PREFIX=${THRIFT_HOME}/python \
+      ./configure --with-pic --prefix=${THRIFT_HOME} \
+      --with-php=no --with-java=no --with-perl=no --with-erlang=no \
+      --with-ruby=no --with-haskell=no --with-erlang=no --with-d=no \
+      --with-qt4=no
+  make # Make with -j fails
+  make install
+  cd ${THRIFT_SRC_DIR}/contrib/fb303
+  chmod 755 ./bootstrap.sh
+  ./bootstrap.sh
+  chmod 755 configure
+  CPPFLAGS="-I${THRIFT_HOME}/include" PY_PREFIX=${THRIFT_HOME}/python ./configure \
+      --prefix=${THRIFT_HOME} --with-thriftpath=${THRIFT_HOME}
+  make
   make install
 fi
 
-# Build Avro
-cd $IMPALA_HOME/thirdparty/avro-${IMPALA_AVRO_VERSION}/lang/c++
-cmake -G "Unix Makefiles"
-make -j4
+GFLAGS_INSTALL=`pwd`/third-party-install
+
+if [ $gflags_action -eq 1 ]
+then
+  # build gflags
+    cd $IMPALA_HOME/thirdparty/gflags-${IMPALA_GFLAGS_VERSION}
+    ./configure --with-pic --prefix=${GFLAGS_INSTALL}
+    make -j4 install
+fi
+
+if [ $gperftools_action -eq 1 ]
+then
+  # build gperftools
+  cd $IMPALA_HOME/thirdparty/gperftools-${IMPALA_GPERFTOOLS_VERSION}
+  # TODO: google perf tools indicates this might be necessary on 64 bit systems.
+  # we're not compiling the rest of our code to not omit frame pointers but it
+  # still seems to generate useful profiling data.
+  ./configure --enable-frame-pointers --with-pic
+  make -j4
+fi
+
+if [ $glog_action -eq 1 ]
+then
+  # Build glog
+  cd $IMPALA_HOME/thirdparty/glog-${IMPALA_GLOG_VERSION}
+  ./configure --with-pic --with-gflags=${GFLAGS_INSTALL}
+
+  # SLES's gcc45-c++ is required for sse2 support (default is 4.3), but crashes
+  # when building logging_unittest-logging_unittest.o. Telling it to uses the
+  # stabs format for debugging symbols instead of dwarf exercises a different
+  # code path to work around this issue.
+  cat > Makefile.gcc45sles_workaround <<EOF
+logging_unittest-logging_unittest.o : CXXFLAGS= -gstabs -O2
+EOF
+  cat Makefile >> Makefile.gcc45sles_workaround
+  mv Makefile.gcc45sles_workaround Makefile
+
+  make -j4
+fi
+
+if [ $gtest_action -eq 1 ]
+then
+  # Build gtest
+  cd $IMPALA_HOME/thirdparty/gtest-${IMPALA_GTEST_VERSION}
+  cmake .
+  make -j4
+fi
+
+if [ $snappy_action -eq 1 ]
+then
+  # Build Snappy
+  cd $IMPALA_HOME/thirdparty/snappy-${IMPALA_SNAPPY_VERSION}
+  ./configure --with-pic --prefix=$IMPALA_HOME/thirdparty/snappy-${IMPALA_SNAPPY_VERSION}/build
+  make install
+fi
+
+if [ $sasl_action -eq 1 ]
+then
+  if [ -z "$USE_PIC_LIB_PATH" ]; then
+    # Build Sasl
+    # Disable everything except those protocols needed -- currently just Kerberos.
+    # Sasl does not have a --with-pic configuration.
+    cd $IMPALA_HOME/thirdparty/cyrus-sasl-${IMPALA_CYRUS_SASL_VERSION}
+    CFLAGS="-fPIC -DPIC" CXXFLAGS="-fPIC -DPIC" ./configure \
+	--disable-digest --disable-sql --disable-cram --disable-ldap --disable-otp  \
+	--prefix=$IMPALA_HOME/thirdparty/cyrus-sasl-${IMPALA_CYRUS_SASL_VERSION}/build \
+	--enable-static --enable-staticdlopen
+    # the first time you do a make it fails, ignore the error.
+    (make || true)
+    make
+    make install
+  fi
+fi
+
+if [ $avro_action -eq 1 ]
+then
+  # Build Avro
+  cd $IMPALA_HOME/thirdparty/avro-${IMPALA_AVRO_VERSION}/lang/c++
+  cmake -G "Unix Makefiles"
+  make -j4
+fi
