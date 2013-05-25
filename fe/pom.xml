@@ -27,14 +27,19 @@
   <name>Cloudera Impala Query Engine Frontend</name>
 
   <properties>
-    <test.hive.testdata>${project.basedir}/../testdata/target/AllTypes.txt</test.hive.testdata>
-    <backend.library.path>${env.IMPALA_HOME}/be/build/debug/service:${env.IMPALA_HOME}/be/build/release/service</backend.library.path>
-    <beeswax_port>21000</beeswax_port>
-    <impalad>localhost</impalad>
-    <testExecutionMode>reduced</testExecutionMode>
+    <impala.home>${env.IMPALA_HOME}</impala.home>
     <hadoop.version>${env.IMPALA_HADOOP_VERSION_MVN}</hadoop.version>
     <hive.version>${env.IMPALA_HIVE_VERSION}</hive.version>
     <hbase.version>${env.IMPALA_HBASE_VERSION}</hbase.version>
+    <thrift.version>${env.IMPALA_THRIFT_VERSION}</thrift.version>
+    <test.hive.testdata>${project.basedir}/../testdata/target/AllTypes.txt</test.hive.testdata>
+    <backend.library.path>${impala.home}/be/build/debug/service:${impala.home}/be/build/release/service</backend.library.path>
+    <beeswax_port>21000</beeswax_port>
+    <impalad>localhost</impalad>
+    <testExecutionMode>reduced</testExecutionMode>
+    <hive.home>${impala.home}/thirdparty/hive-${hive.version}</hive.home>
+    <thrift.src.dir>${impala.home}/thirdparty/thrift-${thrift.version}/</thrift.src.dir>
+    <thrift.home>${thrift.src.dir}/build</thrift.home>
   </properties>
 
   <dependencies>
@@ -63,7 +68,7 @@
       <artifactId>hadoop-auth</artifactId>
       <version>${hadoop.version}</version>
       <scope>system</scope>
-      <systemPath>${env.IMPALA_HOME}/thirdparty/hadoop-${hadoop.version}/share/hadoop/common/lib/hadoop-auth-${hadoop.version}.jar</systemPath>
+      <systemPath>${impala.home}/thirdparty/hadoop-${hadoop.version}/share/hadoop/common/lib/hadoop-auth-${hadoop.version}.jar</systemPath>
     </dependency> -->
 
     <dependency>
@@ -78,12 +83,12 @@
     <dependency>
       <groupId>org.apache.thrift</groupId>
       <artifactId>libthrift</artifactId>
-      <version>${env.IMPALA_THRIFT_VERSION}</version>
+      <version>${thrift.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.thrift</groupId>
       <artifactId>libfb303</artifactId>
-      <version>${env.IMPALA_THRIFT_VERSION}</version>
+      <version>${thrift.version}</version>
     </dependency>
 
     <dependency>
@@ -236,6 +241,7 @@
   </reporting>
 
   <build>
+    <sourceDirectory>src/mapr/java</sourceDirectory>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -569,7 +575,7 @@
                 <configuration>
                   <target name="start-cluster" unless="cluster.format">
                     <!-- start HDFS and HBase without formatting -->
-                    <exec executable="${env.IMPALA_HOME}/testdata/bin/run-all.sh">
+                    <exec executable="${impala.home}/testdata/bin/run-all.sh">
                     </exec>
                   </target>
                 </configuration>
@@ -583,14 +589,14 @@
                 <configuration>
                   <target name="load-data" if="cluster.format">
                     <!-- start HDFS and HBase clean -->
-                    <exec executable="${env.IMPALA_HOME}/testdata/bin/run-all.sh">
+                    <exec executable="${impala.home}/testdata/bin/run-all.sh">
                       <arg value="-format"/>
                     </exec>
                   </target>
                     <!-- split HBase tables -->
                     <!-- CDH-4771: splitting HBase table might crash region servers.
                                    skip this until the issue is resolved.
-                    <exec executable="${env.IMPALA_HOME}/testdata/bin/split-hbase.sh">
+                    <exec executable="${impala.home}/testdata/bin/split-hbase.sh">
                     </exec>
                     -->
                 </configuration>
@@ -616,14 +622,14 @@
                 </goals>
                 <configuration>
                   <target>
-                    <exec executable="${env.HIVE_HOME}/bin/hive">
+                    <exec executable="${hive.home}/bin/hive">
                       <arg value="-hiveconf"/>
                       <arg value="hive.root.logger=WARN,console"/>
                       <arg value="-v"/>
                       <arg value="-f"/>
                       <arg value="${project.basedir}/../testdata/data/mstr/eatwh1/EATWH1-DDL.sql"/>
                     </exec>
-                    <exec executable="${env.HIVE_HOME}/bin/hive">
+                    <exec executable="${hive.home}/bin/hive">
                       <arg value="-hiveconf"/>
                       <arg value="mstr.eatwh1.data.dir=${project.basedir}/../testdata/data/mstr/eatwh1/csv"/>
                       <arg value="hive.root.logger=WARN,console"/>
@@ -655,14 +661,14 @@
                 </goals>
                 <configuration>
                   <target>
-                    <exec executable="${env.HIVE_HOME}/bin/hive">
+                    <exec executable="${hive.home}/bin/hive">
                       <arg value="-hiveconf"/>
                       <arg value="hive.root.logger=WARN,console"/>
                       <arg value="-v"/>
                       <arg value="-f"/>
                       <arg value="${project.basedir}/../testdata/data/mstr/eatwh2/EATWH2-DDL.sql"/>
                     </exec>
-		    <exec executable="${env.HIVE_HOME}/bin/hive">
+		    <exec executable="${hive.home}/bin/hive">
                       <arg value="-hiveconf"/>
 		      <arg value="mstr.eatwh2.data.dir=${project.basedir}/../testdata/data/mstr/eatwh2/csv"/>
                       <arg value="hive.root.logger=WARN,console"/>
@@ -683,11 +689,11 @@
       <id>thrift-home-defined</id>
       <activation>
         <file>
-          <exists>${env.THRIFT_HOME}/bin/thrift</exists>
+          <exists>${thrift.home}/bin/thrift</exists>
           </file>
       </activation>
       <properties>
-        <thrift.executable>${env.THRIFT_HOME}/bin/thrift</thrift.executable>
+        <thrift.executable>${thrift.home}/bin/thrift</thrift.executable>
       </properties>
     </profile>
   </profiles>
