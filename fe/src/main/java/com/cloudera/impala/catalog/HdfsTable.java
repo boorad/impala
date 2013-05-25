@@ -12,16 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// AML These symbols cannot be found at compile time
-//  symbol  : variable CommonConfigurationKeysPublic
-//  symbol  : variable CommonConfigurationKeysPublic
-//  symbol  : variable DFS_HDFS_BLOCKS_METADATA_ENABLED
-//  symbol  : variable DFS_HDFS_BLOCKS_METADATA_ENABLED_DEFAULT
-//  symbol  : method isDirectory()
-//  symbol  : class BlockStorageLocation
-//  symbol  : method getFileBlockStorageLocations(java.util.List<org.apache.hadoop.fs.BlockLocation>)
-//  symbol  : class VolumeId
-
 package com.cloudera.impala.catalog;
 
 import java.io.IOException;
@@ -33,18 +23,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.commons.codec.binary.Base64;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.BlockLocation;
-// AML import org.apache.hadoop.fs.BlockStorageLocation;
-// AML import org.apache.hadoop.fs.CommonConfigurationKeysPublic;
 import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
-// AML import org.apache.hadoop.fs.VolumeId;
-import org.apache.hadoop.hbase.util.Bytes;
-import org.apache.hadoop.hdfs.DFSConfigKeys;
-import org.apache.hadoop.hdfs.DistributedFileSystem;
 import org.apache.hadoop.hive.metastore.HiveMetaStoreClient;
 import org.apache.hadoop.hive.metastore.api.ColumnStatistics;
 import org.apache.hadoop.hive.metastore.api.FieldSchema;
@@ -257,7 +240,7 @@ public class HdfsTable extends Table {
   // and its usage in getFileSystem suggests it should be.
   private static final Configuration CONF = new Configuration();
 
-  private static final DistributedFileSystem DFS;
+  private static final FileSystem DFS;
 
   private static final boolean SUPPORTS_VOLUME_ID;
 
@@ -275,7 +258,7 @@ public class HdfsTable extends Table {
 //        throw new RuntimeException(error);
 //      }
 
-// AML - Don't caste fs to DistributedFileSystem
+// AML - Don't cast fs to DistributedFileSystem
       DFS = /* AML (DistributedFileSystem)*/ fs;
     } catch (IOException e) {
       throw new RuntimeException("couldn't retrieve FileSystem:\n" + e.getMessage(), e);

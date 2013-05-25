@@ -31,10 +31,9 @@ import java.util.regex.Pattern;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.CommonConfigurationKeysPublic;
 import org.apache.hadoop.fs.FileSystem;
-import org.apache.hadoop.hdfs.DFSConfigKeys;
+import org.apache.hadoop.hdfs.DFSConfigKeys_v2;
 import org.apache.hadoop.hdfs.DFSUtil;
 import org.apache.hadoop.hdfs.DistributedFileSystem;
-import org.apache.hadoop.hdfs.HAUtil;
 import org.apache.hadoop.hive.metastore.api.AlreadyExistsException;
 import org.apache.hadoop.hive.metastore.api.InvalidOperationException;
 import org.apache.hadoop.hive.metastore.api.MetaException;
@@ -463,56 +462,98 @@ public class JniFrontend {
    * Return the CDH version or null (if we can't determine the version)
    */
   private CdhVersion guessCdhVersionFromNnWebUi() {
-    try {
-      // On a large cluster, avoid hitting the name node at the same time
-      Random randomGenerator = new Random();
-      Thread.sleep(randomGenerator.nextInt(2000));
-    } catch (Exception e) {
-    }
-
-    try {
-      String nnUrl = getCurrentNameNodeAddress();
-      if (nnUrl == null) {
-        return null;
-      }
-      URL nnWebUi = new URL("http://" + nnUrl + "/dfshealth.jsp");
-      URLConnection conn = nnWebUi.openConnection();
-      BufferedReader in = new BufferedReader(
-          new InputStreamReader(conn.getInputStream()));
-      String inputLine;
-      while ((inputLine = in.readLine()) != null) {
-        if (inputLine.contains("Version:")) {
-          // Parse the version string cdh<major>.<minor>
-          Pattern cdhVersionPattern = Pattern.compile("cdh\\d\\.\\d");
-          Matcher versionMatcher = cdhVersionPattern.matcher(inputLine);
-          if (versionMatcher.find()) {
-            // Strip out "cdh" before passing to CdhVersion
-            return new CdhVersion(versionMatcher.group().substring(3));
-          }
-          return null;
-        }
-      }
-    } catch (Exception e) {
-      LOG.info(e.toString());
-    }
+//    try {
+//      // On a large cluster, avoid hitting the name node at the same time
+//      Random randomGenerator = new Random();
+//      Thread.sleep(randomGenerator.nextInt(2000));
+//    } catch (Exception e) {
+//    }
+//
+//    try {
+//      String nnUrl = getCurrentNameNodeAddress();
+//      if (nnUrl == null) {
+//        return null;
+//      }
+//      URL nnWebUi = new URL("http://" + nnUrl + "/dfshealth.jsp");
+//      URLConnection conn = nnWebUi.openConnection();
+//      BufferedReader in = new BufferedReader(
+//          new InputStreamReader(conn.getInputStream()));
+//      String inputLine;
+//      while ((inputLine = in.readLine()) != null) {
+//        if (inputLine.contains("Version:")) {
+//          // Parse the version string cdh<major>.<minor>
+//          Pattern cdhVersionPattern = Pattern.compile("cdh\\d\\.\\d");
+//          Matcher versionMatcher = cdhVersionPattern.matcher(inputLine);
+//          if (versionMatcher.find()) {
+//            // Strip out "cdh" before passing to CdhVersion
+//            return new CdhVersion(versionMatcher.group().substring(3));
+//          }
+//          return null;
+//        }
+//      }
+//    } catch (Exception e) {
+//      LOG.info(e.toString());
+//    }
     return null;
   }
 
   /**
-   * Derive the namenode http address from the current file system,
-   * either default or as set by "-fs" in the generic options.
+   * Get the value of the <code>name</code> property, <code>null</code> if
+   * no such property exists. If the key is deprecated, it returns the value of
+   * the first key which replaces the deprecated key and is not null
    *
-   * @return Returns http address or null if failure.
+   * Values are processed for <a href="#VariableExpansion">variable expansion</a>
+   * before being returned.
+   *
+   * @param name the property name.
+   * @return the value of the <code>name</code> or its replacing property,
+   *         or null if no such property exists.
    */
-  private String getCurrentNameNodeAddress() throws Exception {
-    // get the filesystem object to verify it is an HDFS system
-    FileSystem fs;
-    fs = FileSystem.get(CONF);
-    if (!(fs instanceof DistributedFileSystem)) {
-      LOG.error("FileSystem is " + fs.getUri());
-      return null;
+  public String get(String name, Configuration conf) {
+    String[] names = {name}; // BSA: removed handleDeprecation(name)
+    String result = null;
+    for(String n : names) {
+      result = conf.get(n); // BSA: removed substituteVars(...)
     }
-    return DFSUtil.getInfoServer(HAUtil.getAddressOfActive(fs), CONF, false);
+    return result;
+  }
+
+  /**
+   * Get the value of the <code>name</code> property as a trimmed <code>String</code>,
+   * <code>null</code> if no such property exists.
+   * If the key is deprecated, it returns the value of
+   * the first key which replaces the deprecated key and is not null
+   *
+   * Values are processed for <a href="#VariableExpansion">variable expansion</a>
+   * before being returned.
+   *
+   * @param name the property name.
+   * @return the value of the <code>name</code> or its replacing property,
+   *         or null if no such property exists.
+   */
+  public String getTrimmed(String name, Configuration conf) {
+    String value = get(name, conf);
+
+    if (null == value) {
+      return null;
+    } else {
+      return value.trim();
+    }
+  }
+
+  /**
+   * Get the value of the <code>name</code> property as a trimmed <code>String</code>,
+   * <code>defaultValue</code> if no such property exists.
+   * See @{Configuration#getTrimmed} for more details.
+   *
+   * @param name          the property name.
+   * @param defaultValue  the property default value.
+   * @return              the value of the <code>name</code> or defaultValue
+   *                      if it is not set.
+   */
+  public String getTrimmed(String name, String defaultValue, Configuration conf) {
+    String ret = getTrimmed(name, conf);
+    return ret == null ? defaultValue : ret;
   }
 
   /**
@@ -526,11 +567,11 @@ public class JniFrontend {
     StringBuilder errorCause = new StringBuilder();
 
     // dfs.domain.socket.path must be set properly
-    String domainSocketPath = conf.getTrimmed(DFSConfigKeys.DFS_DOMAIN_SOCKET_PATH_KEY,
-        DFSConfigKeys.DFS_DOMAIN_SOCKET_PATH_DEFAULT);
+    String domainSocketPath = getTrimmed(DFSConfigKeys_v2.DFS_DOMAIN_SOCKET_PATH_KEY,
+        DFSConfigKeys_v2.DFS_DOMAIN_SOCKET_PATH_DEFAULT, conf);
     if (domainSocketPath.isEmpty()) {
       errorCause.append(prefix);
-      errorCause.append(DFSConfigKeys.DFS_DOMAIN_SOCKET_PATH_KEY);
+      errorCause.append(DFSConfigKeys_v2.DFS_DOMAIN_SOCKET_PATH_KEY);
       errorCause.append(" is not configured.\n");
     } else {
       // The socket path parent directory must be readable and executable.
@@ -539,24 +580,24 @@ public class JniFrontend {
       if (socketDir == null || !socketDir.canRead() || !socketDir.canExecute()) {
         errorCause.append(prefix);
         errorCause.append("Impala cannot read or execute the parent directory of ");
-        errorCause.append(DFSConfigKeys.DFS_DOMAIN_SOCKET_PATH_KEY);
+        errorCause.append(DFSConfigKeys_v2.DFS_DOMAIN_SOCKET_PATH_KEY);
         errorCause.append("\n");
       }
     }
 
     // dfs.client.read.shortcircuit must be set to true.
-    if (!conf.getBoolean(DFSConfigKeys.DFS_CLIENT_READ_SHORTCIRCUIT_KEY,
-        DFSConfigKeys.DFS_CLIENT_READ_SHORTCIRCUIT_DEFAULT)) {
+    if (!conf.getBoolean(DFSConfigKeys_v2.DFS_CLIENT_READ_SHORTCIRCUIT_KEY,
+        DFSConfigKeys_v2.DFS_CLIENT_READ_SHORTCIRCUIT_DEFAULT)) {
       errorCause.append(prefix);
-      errorCause.append(DFSConfigKeys.DFS_CLIENT_READ_SHORTCIRCUIT_KEY);
+      errorCause.append(DFSConfigKeys_v2.DFS_CLIENT_READ_SHORTCIRCUIT_KEY);
       errorCause.append(" is not enabled.\n");
     }
 
     // dfs.client.use.legacy.blockreader.local must be set to false
-    if (conf.getBoolean(DFSConfigKeys.DFS_CLIENT_USE_LEGACY_BLOCKREADERLOCAL,
-        DFSConfigKeys.DFS_CLIENT_USE_LEGACY_BLOCKREADERLOCAL_DEFAULT)) {
+    if (conf.getBoolean(DFSConfigKeys_v2.DFS_CLIENT_USE_LEGACY_BLOCKREADERLOCAL,
+        DFSConfigKeys_v2.DFS_CLIENT_USE_LEGACY_BLOCKREADERLOCAL_DEFAULT)) {
       errorCause.append(prefix);
-      errorCause.append(DFSConfigKeys.DFS_CLIENT_USE_LEGACY_BLOCKREADERLOCAL);
+      errorCause.append(DFSConfigKeys_v2.DFS_CLIENT_USE_LEGACY_BLOCKREADERLOCAL);
       errorCause.append(" should not be enabled.\n");
     }
 
@@ -581,18 +622,18 @@ public class JniFrontend {
 
     // Client side checks
     // dfs.client.read.shortcircuit must be set to true.
-    if (!conf.getBoolean(DFSConfigKeys.DFS_CLIENT_READ_SHORTCIRCUIT_KEY,
-        DFSConfigKeys.DFS_CLIENT_READ_SHORTCIRCUIT_DEFAULT)) {
+    if (!conf.getBoolean(DFSConfigKeys_v2.DFS_CLIENT_READ_SHORTCIRCUIT_KEY,
+        DFSConfigKeys_v2.DFS_CLIENT_READ_SHORTCIRCUIT_DEFAULT)) {
       errorCause.append(prefix);
-      errorCause.append(DFSConfigKeys.DFS_CLIENT_READ_SHORTCIRCUIT_KEY);
+      errorCause.append(DFSConfigKeys_v2.DFS_CLIENT_READ_SHORTCIRCUIT_KEY);
       errorCause.append(" is not enabled.\n");
     }
 
     // dfs.client.use.legacy.blockreader.local must be set to true
-    if (!conf.getBoolean(DFSConfigKeys.DFS_CLIENT_USE_LEGACY_BLOCKREADERLOCAL,
-        DFSConfigKeys.DFS_CLIENT_USE_LEGACY_BLOCKREADERLOCAL_DEFAULT)) {
+    if (!conf.getBoolean(DFSConfigKeys_v2.DFS_CLIENT_USE_LEGACY_BLOCKREADERLOCAL,
+        DFSConfigKeys_v2.DFS_CLIENT_USE_LEGACY_BLOCKREADERLOCAL_DEFAULT)) {
       errorCause.append(prefix);
-      errorCause.append(DFSConfigKeys.DFS_CLIENT_USE_LEGACY_BLOCKREADERLOCAL);
+      errorCause.append(DFSConfigKeys_v2.DFS_CLIENT_USE_LEGACY_BLOCKREADERLOCAL);
       errorCause.append(" is not enabled.\n");
     }
 
@@ -618,8 +659,8 @@ public class JniFrontend {
    */
   private void cdh41ShortCircuitReadDatanodeCheck(StringBuilder errorCause,
       String prefix) {
-    String dnWebUiAddr = CONF.get(DFSConfigKeys.DFS_DATANODE_HTTP_ADDRESS_KEY,
-        DFSConfigKeys.DFS_DATANODE_HTTP_ADDRESS_DEFAULT);
+    String dnWebUiAddr = CONF.get(DFSConfigKeys_v2.DFS_DATANODE_HTTP_ADDRESS_KEY,
+        DFSConfigKeys_v2.DFS_DATANODE_HTTP_ADDRESS_DEFAULT);
     URL dnWebUiUrl = null;
     try {
       dnWebUiUrl = new URL("http://" + dnWebUiAddr + "/conf");
@@ -632,25 +673,25 @@ public class JniFrontend {
     // dfs.datanode.data.dir.perm should be at least 750
     int permissionInt = 0;
     try {
-      String permission = dnConf.get(DFSConfigKeys.DFS_DATANODE_DATA_DIR_PERMISSION_KEY,
-          DFSConfigKeys.DFS_DATANODE_DATA_DIR_PERMISSION_DEFAULT);
+      String permission = dnConf.get(DFSConfigKeys_v2.DFS_DATANODE_DATA_DIR_PERMISSION_KEY,
+          DFSConfigKeys_v2.DFS_DATANODE_DATA_DIR_PERMISSION_DEFAULT);
       permissionInt = Integer.parseInt(permission);
     } catch (Exception e) {
     }
     if (permissionInt < 750) {
       errorCause.append(prefix);
       errorCause.append("Data node configuration ");
-      errorCause.append(DFSConfigKeys.DFS_DATANODE_DATA_DIR_PERMISSION_KEY);
+      errorCause.append(DFSConfigKeys_v2.DFS_DATANODE_DATA_DIR_PERMISSION_KEY);
       errorCause.append(" is not properly set. It should be set to 750.\n");
     }
 
     // dfs.block.local-path-access.user should contain the user account impala is running
     // under
-    String accessUser = dnConf.get(DFSConfigKeys.DFS_BLOCK_LOCAL_PATH_ACCESS_USER_KEY);
+    String accessUser = dnConf.get(DFSConfigKeys_v2.DFS_BLOCK_LOCAL_PATH_ACCESS_USER_KEY);
     if (accessUser == null || !accessUser.contains(System.getProperty("user.name"))) {
       errorCause.append(prefix);
       errorCause.append("Data node configuration ");
-      errorCause.append(DFSConfigKeys.DFS_BLOCK_LOCAL_PATH_ACCESS_USER_KEY);
+      errorCause.append(DFSConfigKeys_v2.DFS_BLOCK_LOCAL_PATH_ACCESS_USER_KEY);
       errorCause.append(" is not properly set. It should contain ");
       errorCause.append(System.getProperty("user.name"));
       errorCause.append("\n");
@@ -667,19 +708,19 @@ public class JniFrontend {
         "because\n";
     String prefix = "  - ";
     StringBuilder errorCause = new StringBuilder();
-    if (!conf.getBoolean(DFSConfigKeys.DFS_HDFS_BLOCKS_METADATA_ENABLED,
-        DFSConfigKeys.DFS_HDFS_BLOCKS_METADATA_ENABLED_DEFAULT)) {
+    if (!conf.getBoolean(DFSConfigKeys_v2.DFS_HDFS_BLOCKS_METADATA_ENABLED,
+        DFSConfigKeys_v2.DFS_HDFS_BLOCKS_METADATA_ENABLED_DEFAULT)) {
       errorCause.append(prefix);
-      errorCause.append(DFSConfigKeys.DFS_HDFS_BLOCKS_METADATA_ENABLED);
+      errorCause.append(DFSConfigKeys_v2.DFS_HDFS_BLOCKS_METADATA_ENABLED);
       errorCause.append(" is not enabled.\n");
     }
 
     // dfs.client.file-block-storage-locations.timeout should be >= 500
     // TODO: OPSAPS-12765 - it should be >= 3000, but use 500 for now until CM refresh
-    if (conf.getInt(DFSConfigKeys.DFS_CLIENT_FILE_BLOCK_STORAGE_LOCATIONS_TIMEOUT,
-        DFSConfigKeys.DFS_CLIENT_FILE_BLOCK_STORAGE_LOCATIONS_TIMEOUT_DEFAULT) < 500) {
+    if (conf.getInt(DFSConfigKeys_v2.DFS_CLIENT_FILE_BLOCK_STORAGE_LOCATIONS_TIMEOUT,
+        DFSConfigKeys_v2.DFS_CLIENT_FILE_BLOCK_STORAGE_LOCATIONS_TIMEOUT_DEFAULT) < 500) {
       errorCause.append(prefix);
-      errorCause.append(DFSConfigKeys.DFS_CLIENT_FILE_BLOCK_STORAGE_LOCATIONS_TIMEOUT);
+      errorCause.append(DFSConfigKeys_v2.DFS_CLIENT_FILE_BLOCK_STORAGE_LOCATIONS_TIMEOUT);
       errorCause.append(" is too low. It should be at least 3000.\n");
     }
 
