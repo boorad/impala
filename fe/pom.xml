@@ -241,7 +241,6 @@
   </reporting>
 
   <build>
-    <sourceDirectory>src/mapr/java</sourceDirectory>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -379,6 +378,8 @@
             </goals>
             <configuration>
               <sources>
+                <source>src/main/java</source>
+                <source>src/mapr/java</source>
                 <!-- Make sure Eclipse knows where to find generated sources.
                         Note that the flex plugin appears to do this for you, but we have
                         to do this manually for the CUP and Thrift generated code
@@ -474,7 +475,9 @@
                     </goals>
                   </pluginExecutionFilter>
                   <action>
-        	        <ignore />
+           	        <execute >
+                      <runOnIncremental>false</runOnIncremental>
+                    </execute>
       			  </action>
     		    </pluginExecution>
               </pluginExecutions>
