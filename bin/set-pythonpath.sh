@@ -29,8 +29,4 @@ for EGG in ${IMPALA_HOME}/shell/ext-py/*/dist/*.egg; do
   PYTHONPATH=${PYTHONPATH}:${EGG}
 done
 
-# original site-packages
-# BSA - impala build didn't like the above PYTHONPATH (ClassType error)
-PYTHONPATH=`python -c "from distutils.sysconfig import get_python_lib; print get_python_lib()"`
-
 export PYTHONPATH

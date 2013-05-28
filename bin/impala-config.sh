@@ -100,8 +100,14 @@ export HBASE_CONF_DIR=$HIVE_CONF_DIR
 export THRIFT_SRC_DIR=${IMPALA_HOME}/thirdparty/thrift-${IMPALA_THRIFT_VERSION}/
 export THRIFT_HOME=${THRIFT_SRC_DIR}build/
 
-# Configure python path
-. $IMPALA_HOME/bin/set-pythonpath.sh
+## BSA: for my CentOS 6.3 setup, this is only required for shell, so commenting out here
+## Configure python path
+#. $IMPALA_HOME/bin/set-pythonpath.sh
+
+# BSA - impala build didn't like the above PYTHONPATH (ClassType error)
+# set PYTHONPATH to original site-packages
+PYTHONPATH=`python -c "from distutils.sysconfig import get_python_lib; print get_python_lib()"`
+
 
 # These arguments are, despite the name, passed to every JVM created
 # by an impalad.
