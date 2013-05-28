@@ -14,25 +14,18 @@
 
 package com.cloudera.impala.service;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.InvalidObjectException;
 import java.net.URL;
-import java.net.URLConnection;
 import java.rmi.NoSuchObjectException;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.CommonConfigurationKeysPublic;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.hdfs.DFSConfigKeys_v2;
-import org.apache.hadoop.hdfs.DFSUtil;
 import org.apache.hadoop.hdfs.DistributedFileSystem;
 import org.apache.hadoop.hive.metastore.api.AlreadyExistsException;
 import org.apache.hadoop.hive.metastore.api.InvalidOperationException;
@@ -77,6 +70,7 @@ import com.cloudera.impala.thrift.TGetTablesResult;
 import com.cloudera.impala.thrift.TMetadataOpRequest;
 import com.cloudera.impala.thrift.TMetadataOpResponse;
 import com.cloudera.impala.thrift.TPartitionKeyValue;
+import com.mapr.fs.MapRFileSystem;
 
 /**
  * JNI-callable interface onto a wrapped Frontend instance. The main point is to serialise
@@ -431,28 +425,28 @@ public class JniFrontend {
    * Checks are run only if Impala can determine that it is running on CDH.
    */
   public String checkHadoopConfig() {
-    CdhVersion guessedCdhVersion = guessCdhVersionFromNnWebUi();
-    CdhVersion cdh41 = new CdhVersion("4.1");
-    CdhVersion cdh42 = new CdhVersion("4.2");
+//    CdhVersion guessedCdhVersion = guessCdhVersionFromNnWebUi();
+//    CdhVersion cdh41 = new CdhVersion("4.1");
+//    CdhVersion cdh42 = new CdhVersion("4.2");
     StringBuilder output = new StringBuilder();
 
     output.append(checkFileSystem(CONF));
 
-    if (guessedCdhVersion == null) {
-      // Do not run any additional checks because we cannot determine the CDH version
-      LOG.warn("Cannot detect CDH version. Skipping Hadoop configuration checks");
-      return output.toString();
-    }
-
-    if (guessedCdhVersion.compareTo(cdh41) == 0) {
-      output.append(checkShortCircuitReadCdh41(CONF));
-    } else if (guessedCdhVersion.compareTo(cdh42) >= 0) {
-      output.append(checkShortCircuitRead(CONF));
-    } else {
-      output.append(guessedCdhVersion)
-        .append(" is detected but Impala requires CDH 4.1 or above.");
-    }
-    output.append(checkBlockLocationTracking(CONF));
+//    if (guessedCdhVersion == null) {
+//      // Do not run any additional checks because we cannot determine the CDH version
+//      LOG.warn("Cannot detect CDH version. Skipping Hadoop configuration checks");
+//      return output.toString();
+//    }
+//
+//    if (guessedCdhVersion.compareTo(cdh41) == 0) {
+//      output.append(checkShortCircuitReadCdh41(CONF));
+//    } else if (guessedCdhVersion.compareTo(cdh42) >= 0) {
+//      output.append(checkShortCircuitRead(CONF));
+//    } else {
+//      output.append(guessedCdhVersion)
+//        .append(" is detected but Impala requires CDH 4.1 or above.");
+//    }
+//    output.append(checkBlockLocationTracking(CONF));
 
     return output.toString();
   }
@@ -734,14 +728,15 @@ public class JniFrontend {
 
   /**
    * Return an empty string if the FileSystem configured in CONF refers to a
-   * DistributedFileSystem (the only one supported by Impala). Otherwise, return an error
-   * string describing the issues.
+   * DistributedFileSystem or MapRFileSystem (the only ones supported by Impala).
+   * Otherwise, return an error string describing the issues.
    */
   private String checkFileSystem(Configuration conf) {
     try {
       FileSystem fs = FileSystem.get(CONF);
-      if (!(fs instanceof DistributedFileSystem)) {
+      if (!((fs instanceof MapRFileSystem) || (fs instanceof DistributedFileSystem))) {
         return "Unsupported file system. Impala only supports DistributedFileSystem " +
+        		"or MapRFileSystem " +
         		"but the " + fs.getClass().getSimpleName() + " was found. " +
             CommonConfigurationKeysPublic.FS_DEFAULT_NAME_KEY +
             "(" + CONF.get(CommonConfigurationKeysPublic.FS_DEFAULT_NAME_KEY) + ")" +

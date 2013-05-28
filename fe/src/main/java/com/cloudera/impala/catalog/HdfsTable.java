@@ -25,9 +25,11 @@ import java.util.Set;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.BlockLocation;
+import org.apache.hadoop.fs.CommonConfigurationKeysPublic;
 import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.hdfs.DistributedFileSystem;
 import org.apache.hadoop.hive.metastore.HiveMetaStoreClient;
 import org.apache.hadoop.hive.metastore.api.ColumnStatistics;
 import org.apache.hadoop.hive.metastore.api.FieldSchema;
@@ -58,6 +60,7 @@ import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
+import com.mapr.fs.MapRFileSystem;
 
 /**
  * Internal representation of table-related metadata of an hdfs-resident table.
@@ -249,17 +252,16 @@ public class HdfsTable extends Table {
       // call newInstance() instead of using a shared instance from a cache
       // to avoid accidentally having it closed by someone else
       FileSystem fs = FileSystem.newInstance(FileSystem.getDefaultUri(CONF), CONF);
-// AML - Our fs is instanceof MapRFileSystem, not DistributedFileSystem
-//      if (!(fs instanceof DistributedFileSystem)) {
-//        String error = "Cannot connect to HDFS. " +
-//            CommonConfigurationKeysPublic.FS_DEFAULT_NAME_KEY +
-//            "(" + CONF.get(CommonConfigurationKeysPublic.FS_DEFAULT_NAME_KEY) + ")" +
-//            " might be set incorrectly";
-//        throw new RuntimeException(error);
-//      }
 
-// AML - Don't cast fs to DistributedFileSystem
-      DFS = /* AML (DistributedFileSystem)*/ fs;
+      if (!((fs instanceof DistributedFileSystem) || (fs instanceof MapRFileSystem))) {
+        String error = "Cannot connect to HDFS. " +
+            CommonConfigurationKeysPublic.FS_DEFAULT_NAME_KEY +
+            "(" + CONF.get(CommonConfigurationKeysPublic.FS_DEFAULT_NAME_KEY) + ")" +
+            " might be set incorrectly";
+        throw new RuntimeException(error);
+      }
+
+      DFS = (MapRFileSystem)fs;
     } catch (IOException e) {
       throw new RuntimeException("couldn't retrieve FileSystem:\n" + e.getMessage(), e);
     }
