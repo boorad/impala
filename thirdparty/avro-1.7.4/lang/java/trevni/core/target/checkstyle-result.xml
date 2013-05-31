@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="5.4">
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/core/src/main/java/org/apache/trevni/ArrayColumnOutputBuffer.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/core/src/main/java/org/apache/trevni/BlockDescriptor.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/core/src/main/java/org/apache/trevni/BZip2Codec.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/core/src/main/java/org/apache/trevni/Checksum.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/core/src/main/java/org/apache/trevni/Codec.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/core/src/main/java/org/apache/trevni/ColumnDescriptor.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/core/src/main/java/org/apache/trevni/ColumnFileMetaData.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/core/src/main/java/org/apache/trevni/ColumnFileReader.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/core/src/main/java/org/apache/trevni/ColumnFileWriter.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/core/src/main/java/org/apache/trevni/ColumnMetaData.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/core/src/main/java/org/apache/trevni/ColumnOutputBuffer.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/core/src/main/java/org/apache/trevni/ColumnValues.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/core/src/main/java/org/apache/trevni/Crc32Checksum.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/core/src/main/java/org/apache/trevni/DeflateCodec.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/core/src/main/java/org/apache/trevni/Input.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/core/src/main/java/org/apache/trevni/InputBuffer.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/core/src/main/java/org/apache/trevni/InputBytes.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/core/src/main/java/org/apache/trevni/InputFile.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/core/src/main/java/org/apache/trevni/MetaData.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/core/src/main/java/org/apache/trevni/NullChecksum.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/core/src/main/java/org/apache/trevni/NullCodec.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/core/src/main/java/org/apache/trevni/OutputBuffer.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/core/src/main/java/org/apache/trevni/SnappyCodec.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/core/src/main/java/org/apache/trevni/TrevniRuntimeException.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/core/src/main/java/org/apache/trevni/ValueType.java">
+</file>
+</checkstyle>

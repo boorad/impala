@@ -1,0 +1,1 @@
+/usr/bin/c++   -Wall -O3 -DNDEBUG  -fPIC CMakeFiles/precompile.dir/test/precompile.cc.o  -o precompile -rdynamic libavrocpp_s.a -lboost_filesystem-gcc44-mt-1_42 -lboost_system-gcc44-mt-1_42 -lboost_program_options-gcc44-mt-1_42 

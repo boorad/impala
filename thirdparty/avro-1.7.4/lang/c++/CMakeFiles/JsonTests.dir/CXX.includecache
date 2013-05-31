@@ -1,0 +1,36 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/vagrant/impala/thirdparty/avro-1.7.4/lang/c++/test/../impl/json/JsonDom.hh
+stdint.h
+-
+map
+-
+string
+-
+vector
+-
+boost/any.hpp
+/home/vagrant/impala/thirdparty/avro-1.7.4/lang/c++/test/../impl/json/boost/any.hpp
+Config.hh
+/home/vagrant/impala/thirdparty/avro-1.7.4/lang/c++/test/../impl/json/Config.hh
+
+/home/vagrant/impala/thirdparty/avro-1.7.4/lang/c++/test/JsonTests.cc
+limits
+-
+boost/test/included/unit_test_framework.hpp
+-
+boost/test/unit_test.hpp
+-
+boost/test/parameterized_test.hpp
+-
+../impl/json/JsonDom.hh
+/home/vagrant/impala/thirdparty/avro-1.7.4/lang/c++/test/../impl/json/JsonDom.hh
+
+api/Config.hh
+

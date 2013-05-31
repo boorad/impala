@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="5.4">
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/avro/src/main/java/org/apache/trevni/avro/AvroColumnator.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/avro/src/main/java/org/apache/trevni/avro/AvroColumnReader.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/avro/src/main/java/org/apache/trevni/avro/AvroColumnWriter.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/avro/src/main/java/org/apache/trevni/avro/AvroTrevniInputFormat.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/avro/src/main/java/org/apache/trevni/avro/AvroTrevniOutputFormat.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/avro/src/main/java/org/apache/trevni/avro/HadoopInput.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/avro/src/main/java/org/apache/trevni/avro/mapreduce/AvroTrevniKeyInputFormat.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/avro/src/main/java/org/apache/trevni/avro/mapreduce/AvroTrevniKeyOutputFormat.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/avro/src/main/java/org/apache/trevni/avro/mapreduce/AvroTrevniKeyRecordReader.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/avro/src/main/java/org/apache/trevni/avro/mapreduce/AvroTrevniKeyRecordWriter.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/avro/src/main/java/org/apache/trevni/avro/mapreduce/AvroTrevniKeyValueInputFormat.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/avro/src/main/java/org/apache/trevni/avro/mapreduce/AvroTrevniKeyValueOutputFormat.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/avro/src/main/java/org/apache/trevni/avro/mapreduce/AvroTrevniKeyValueRecordReader.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/avro/src/main/java/org/apache/trevni/avro/mapreduce/AvroTrevniKeyValueRecordWriter.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/avro/src/main/java/org/apache/trevni/avro/mapreduce/AvroTrevniRecordReaderBase.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/avro/src/main/java/org/apache/trevni/avro/mapreduce/AvroTrevniRecordWriterBase.java">
+</file>
+</checkstyle>

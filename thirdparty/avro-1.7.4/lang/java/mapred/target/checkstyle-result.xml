@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="5.4">
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/hadoop/file/HadoopCodecFactory.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/hadoop/file/SortedKeyValueFile.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/hadoop/io/AvroDatumConverter.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/hadoop/io/AvroDatumConverterFactory.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/hadoop/io/AvroDeserializer.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/hadoop/io/AvroKeyComparator.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/hadoop/io/AvroKeyDeserializer.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/hadoop/io/AvroKeyValue.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/hadoop/io/AvroSequenceFile.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/hadoop/io/AvroSerialization.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/hadoop/io/AvroSerializer.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/hadoop/io/AvroValueDeserializer.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/hadoop/util/AvroCharSequenceComparator.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/mapred/AvroAsTextInputFormat.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/mapred/AvroAsTextRecordReader.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/mapred/AvroCollector.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/mapred/AvroInputFormat.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/mapred/AvroJob.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/mapred/AvroKey.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/mapred/AvroKeyComparator.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/mapred/AvroMapper.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/mapred/AvroMultipleOutputs.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/mapred/AvroOutputFormat.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/mapred/AvroRecordReader.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/mapred/AvroReducer.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/mapred/AvroSerialization.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/mapred/AvroTextOutputFormat.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/mapred/AvroUtf8InputFormat.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/mapred/AvroValue.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/mapred/AvroWrapper.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/mapred/FsInput.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/mapred/HadoopCombiner.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/mapred/HadoopMapper.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/mapred/HadoopReducer.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/mapred/HadoopReducerBase.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/mapred/Pair.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/mapred/SequenceFileInputFormat.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/mapred/SequenceFileReader.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/mapred/SequenceFileRecordReader.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/mapred/tether/TetherData.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/mapred/tether/TetheredProcess.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/mapred/tether/TetherInputFormat.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/mapred/tether/TetherJob.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/mapred/tether/TetherKeyComparator.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/mapred/tether/TetherKeySerialization.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/mapred/tether/TetherMapRunner.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/mapred/tether/TetherOutputFormat.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/mapred/tether/TetherOutputService.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/mapred/tether/TetherPartitioner.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/mapred/tether/TetherRecordReader.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/mapred/tether/TetherReducer.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/mapreduce/AvroJob.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/mapreduce/AvroKeyInputFormat.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/mapreduce/AvroKeyOutputFormat.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/mapreduce/AvroKeyRecordReader.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/mapreduce/AvroKeyRecordWriter.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/mapreduce/AvroKeyValueInputFormat.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/mapreduce/AvroKeyValueOutputFormat.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/mapreduce/AvroKeyValueRecordReader.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/mapreduce/AvroKeyValueRecordWriter.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/mapreduce/AvroMultipleOutputs.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/mapreduce/AvroOutputFormatBase.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/mapreduce/AvroRecordReaderBase.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/mapreduce/AvroSequenceFileInputFormat.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/mapred/src/main/java/org/apache/avro/mapreduce/AvroSequenceFileOutputFormat.java">
+</file>
+</checkstyle>

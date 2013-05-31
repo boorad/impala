@@ -1,0 +1,119 @@
+// ------------------------------------------------------------------
+// Transitive dependencies of this project determined from the
+// maven pom organized by organization.
+// ------------------------------------------------------------------
+
+Trevni Java Avro
+
+
+From: 'an unknown organization'
+  - ParaNamer Core (http://paranamer.codehaus.org/paranamer) com.thoughtworks.paranamer:paranamer:jar:2.3
+    License: BSD  (LICENSE.txt)
+  - commons-beanutils  commons-beanutils:commons-beanutils:jar:1.7.0
+
+  - Logging (http://jakarta.apache.org/commons/logging/) commons-logging:commons-logging:jar:1.0.3
+
+  - HSQLDB (http://hsqldb.org/) hsqldb:hsqldb:jar:1.8.0.10
+    License: HSQLDB License  (http://hsqldb.org/web/hsqlLicense.html)
+  - An open source Java toolkit for Amazon S3 (http://jets3t.s3.amazonaws.com/index.html) net.java.dev.jets3t:jets3t:jar:0.7.1
+    License: Apache License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0)
+  - kosmosfs (http://kosmosfs.sourceforge.net/) net.sf.kosmosfs:kfs:jar:0.3
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - hadoop-core  org.apache.hadoop:hadoop-core:jar:0.20.205.0
+
+  - Eclipse JDT Core (http://www.eclipse.org/jdt/) org.eclipse.jdt:core:jar:3.1.1
+    License: Eclipse Public License v1.0  (http://www.eclipse.org/org/documents/epl-v10.php)
+  - XZ for Java (http://tukaani.org/xz/java.html) org.tukaani:xz:jar:1.0
+    License: Public Domain 
+  - oro  oro:oro:jar:2.0.8
+
+  - jasper-compiler  tomcat:jasper-compiler:jar:5.5.12
+
+  - jasper-runtime  tomcat:jasper-runtime:jar:5.5.12
+
+  - xmlenc Library (http://xmlenc.sourceforge.net) xmlenc:xmlenc:jar:0.52
+    License: The BSD License  (http://www.opensource.org/licenses/bsd-license.php)
+
+From: 'Apache Software Foundation' (http://jakarta.apache.org/)
+  - HttpClient (http://jakarta.apache.org/commons/httpclient/) commons-httpclient:commons-httpclient:jar:3.0.1
+    License: Apache License  (http://www.apache.org/licenses/LICENSE-2.0)
+
+From: 'FasterXML' (http://fasterxml.com)
+  - Jackson (http://jackson.codehaus.org) org.codehaus.jackson:jackson-core-asl:jar:1.8.8
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Data Mapper for Jackson (http://jackson.codehaus.org) org.codehaus.jackson:jackson-mapper-asl:jar:1.8.8
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+From: 'Mort Bay Consulting' (http://www.mortbay.com)
+  - Jetty Server (http://www.eclipse.org/jetty/jetty-parent/project/modules/jetty) org.mortbay.jetty:jetty:jar:6.1.26
+    License: Apache Software License - Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0)    License: Eclipse Public License - Version 1.0  (http://www.eclipse.org/org/documents/epl-v10.php)
+  - Jetty Utilities (http://www.eclipse.org/jetty/jetty-parent/project/jetty-util) org.mortbay.jetty:jetty-util:jar:6.1.26
+    License: Apache Software License - Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0)    License: Eclipse Public License - Version 1.0  (http://www.eclipse.org/org/documents/epl-v10.php)
+  - Glassfish Jasper (http://jetty.mortbay.org/project/modules/jsp-2.1) org.mortbay.jetty:jsp-2.1:jar:6.1.14
+    License: CDDL 1.0  (https://glassfish.dev.java.net/public/CDDLv1.0.html)
+  - Glassfish Jasper API (http://jetty.mortbay.org/project/modules/jsp-api-2.1) org.mortbay.jetty:jsp-api-2.1:jar:6.1.14
+    License: Apache License Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0)
+  - Servlet Specification API (http://jetty.mortbay.org/servlet-api) org.mortbay.jetty:servlet-api:jar:2.5-20081211
+    License: Apache License Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0)
+  - Servlet Specification 2.5 API (http://jetty.mortbay.org/project/modules/servlet-api-2.5) org.mortbay.jetty:servlet-api-2.5:jar:6.1.14
+    License: CDDL 1.0  (https://glassfish.dev.java.net/public/CDDLv1.0.html)
+
+From: 'QOS.ch' (http://www.qos.ch)
+  - SLF4J API Module (http://www.slf4j.org) org.slf4j:slf4j-api:jar:1.6.4
+    License: MIT License  (http://www.opensource.org/licenses/mit-license.php)
+  - SLF4J Simple Binding (http://www.slf4j.org) org.slf4j:slf4j-simple:jar:1.6.4
+    License: MIT License  (http://www.opensource.org/licenses/mit-license.php)
+
+From: 'The Apache Software Foundation' (http://commons.apache.org/)
+  - Commons Configuration (http://commons.apache.org/${pom.artifactId.substring(8)}/) commons-configuration:commons-configuration:jar:1.6
+    License: The Apache Software License, Version 2.0  (/LICENSE.txt)
+
+From: 'The Apache Software Foundation' (http://jakarta.apache.org)
+  - Digester (http://jakarta.apache.org/commons/digester/) commons-digester:commons-digester:jar:1.8
+    License: The Apache Software License, Version 2.0  (/LICENSE.txt)
+  - EL (http://jakarta.apache.org/commons/el/) commons-el:commons-el:jar:1.0
+    License: The Apache Software License, Version 2.0  (/LICENSE.txt)
+  - Jakarta Commons Net (http://jakarta.apache.org/commons/${pom.artifactId.substring(8)}/) commons-net:commons-net:jar:1.4.1
+    License: The Apache Software License, Version 2.0  (/LICENSE.txt)
+
+From: 'The Apache Software Foundation' (http://www.apache.org/)
+  - ant (http://www.apache.org/ant/) ant:ant:jar:1.6.5
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Commons BeanUtils Core (http://commons.apache.org/beanutils/) commons-beanutils:commons-beanutils-core:jar:1.8.0
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Commons CLI (http://commons.apache.org/cli/) commons-cli:commons-cli:jar:1.2
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Commons Codec (http://commons.apache.org/codec/) commons-codec:commons-codec:jar:1.4
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Commons Collections (http://commons.apache.org/collections/) commons-collections:commons-collections:jar:3.2.1
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Commons Lang (http://commons.apache.org/lang/) commons-lang:commons-lang:jar:2.4
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Apache Avro (http://avro.apache.org) org.apache.avro:avro:jar:1.7.4
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Apache Avro IPC (http://avro.apache.org) org.apache.avro:avro-ipc:jar:1.7.4
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Apache Avro IPC (http://avro.apache.org) org.apache.avro:avro-ipc:jar:1.7.4
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Apache Avro Mapred API (http://avro.apache.org/avro-mapred) org.apache.avro:avro-mapred:jar:1.7.4
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Trevni Java Core (http://avro.apache.org/) org.apache.avro:trevni-core:jar:1.7.4
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Commons Compress (http://commons.apache.org/compress/) org.apache.commons:commons-compress:jar:1.4.1
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Commons Math (http://commons.apache.org/math/) org.apache.commons:commons-math:jar:2.1
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Apache Velocity (http://velocity.apache.org/engine/devel/) org.apache.velocity:velocity:jar:1.7
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+From: 'The Netty Project' (http://netty.io/)
+  - The Netty Project (http://netty.io/) io.netty:netty:bundle:3.4.0.Final
+    License: Apache License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0)
+
+From: 'xerial.org' (http://www.xerial.org/)
+  - Snappy for Java (http://code.google.com/p/snappy-java/) org.xerial.snappy:snappy-java:bundle:1.0.4.1
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+
+
+

@@ -1,0 +1,89 @@
+// ------------------------------------------------------------------
+// Transitive dependencies of this project determined from the
+// maven pom organized by organization.
+// ------------------------------------------------------------------
+
+Apache Avro Maven Plugin
+
+
+From: 'an unknown organization'
+  - ParaNamer Core (http://paranamer.codehaus.org/paranamer) com.thoughtworks.paranamer:paranamer:jar:2.3
+    License: BSD  (LICENSE.txt)
+  - XZ for Java (http://tukaani.org/xz/java.html) org.tukaani:xz:jar:1.0
+    License: Public Domain 
+
+From: 'Apache Software Foundation' (http://www.apache.org/)
+  - Maven Wagon API (http://maven.apache.org/wagon/wagon-provider-api) org.apache.maven.wagon:wagon-provider-api:jar:1.0-beta-2
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+From: 'Codehaus' (http://www.codehaus.org/)
+  - Default Plexus Container  org.codehaus.plexus:plexus-container-default:jar:1.0-alpha-9-stable-1
+
+  - Plexus Interpolation API  org.codehaus.plexus:plexus-interpolation:jar:1.1
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Plexus Common Utilities (http://plexus.codehaus.org/plexus-utils) org.codehaus.plexus:plexus-utils:jar:1.5.5
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+From: 'FasterXML' (http://fasterxml.com)
+  - Jackson (http://jackson.codehaus.org) org.codehaus.jackson:jackson-core-asl:jar:1.8.8
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Data Mapper for Jackson (http://jackson.codehaus.org) org.codehaus.jackson:jackson-mapper-asl:jar:1.8.8
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+From: 'JUnit' (http://www.junit.org)
+  - JUnit (http://junit.org) junit:junit:jar:3.8.2
+    License: Common Public License Version 1.0  (http://www.opensource.org/licenses/cpl1.0.txt)
+
+From: 'QOS.ch' (http://www.qos.ch)
+  - SLF4J API Module (http://www.slf4j.org) org.slf4j:slf4j-api:jar:1.6.4
+    License: MIT License  (http://www.opensource.org/licenses/mit-license.php)
+  - SLF4J Simple Binding (http://www.slf4j.org) org.slf4j:slf4j-simple:jar:1.6.4
+    License: MIT License  (http://www.opensource.org/licenses/mit-license.php)
+
+From: 'The Apache Software Foundation' (http://www.apache.org/)
+  - Commons Collections (http://commons.apache.org/collections/) commons-collections:commons-collections:jar:3.2.1
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Commons Lang (http://commons.apache.org/lang/) commons-lang:commons-lang:jar:2.6
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Apache Avro (http://avro.apache.org) org.apache.avro:avro:jar:1.7.4
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Apache Avro Compiler (http://avro.apache.org) org.apache.avro:avro-compiler:jar:1.7.4
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Commons Compress (http://commons.apache.org/compress/) org.apache.commons:commons-compress:jar:1.4.1
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Maven Artifact (http://maven.apache.org/maven-artifact) org.apache.maven:maven-artifact:jar:2.0.10
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Maven Artifact Manager (http://maven.apache.org/maven-artifact-manager) org.apache.maven:maven-artifact-manager:jar:2.0.10
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Maven Model (http://maven.apache.org/maven-model) org.apache.maven:maven-model:jar:2.0.10
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Maven Plugin API (http://maven.apache.org/maven-plugin-api) org.apache.maven:maven-plugin-api:jar:2.0.10
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Maven Plugin Registry Model (http://maven.apache.org/maven-plugin-registry) org.apache.maven:maven-plugin-registry:jar:2.0.10
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Maven Profile Model (http://maven.apache.org/maven-profile) org.apache.maven:maven-profile:jar:2.0.10
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Maven Project Builder (http://maven.apache.org/maven-project) org.apache.maven:maven-project:jar:2.0.10
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Maven Repository Metadata Model (http://maven.apache.org/maven-repository-metadata) org.apache.maven:maven-repository-metadata:jar:2.0.10
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Maven Local Settings Model (http://maven.apache.org/maven-settings) org.apache.maven:maven-settings:jar:2.0.10
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Maven File Management API (http://maven.apache.org/shared/file-management/) org.apache.maven.shared:file-management:jar:1.2.1
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Maven Shared I/O API (http://maven.apache.org/shared/maven-shared-io/) org.apache.maven.shared:maven-shared-io:jar:1.1
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Apache Velocity (http://velocity.apache.org/engine/devel/) org.apache.velocity:velocity:jar:1.7
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+From: 'The Codehaus' (http://codehaus.org/)
+  - classworlds (http://classworlds.codehaus.org/) classworlds:classworlds:jar:1.1
+
+
+From: 'xerial.org' (http://www.xerial.org/)
+  - Snappy for Java (http://code.google.com/p/snappy-java/) org.xerial.snappy:snappy-java:bundle:1.0.4.1
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+
+
+

@@ -1,0 +1,24 @@
+882 [main] INFO org.apache.avro.TestDataFile - Running with codec: null
+Ignoring: org.apache.avro.file.DataFileWriter$AppendWriteException: java.lang.NullPointerException: null of long in field longField of Test
+1563 [main] INFO org.apache.avro.TestDataFile - Running with codec: null
+1910 [main] INFO org.apache.avro.TestDataFile - Running with codec: null
+1937 [main] INFO org.apache.avro.TestDataFile - Running with codec: deflate-0
+Ignoring: org.apache.avro.file.DataFileWriter$AppendWriteException: java.lang.NullPointerException: null of long in field longField of Test
+2438 [main] INFO org.apache.avro.TestDataFile - Running with codec: deflate-0
+2557 [main] INFO org.apache.avro.TestDataFile - Running with codec: deflate-0
+2566 [main] INFO org.apache.avro.TestDataFile - Running with codec: deflate-1
+Ignoring: org.apache.avro.file.DataFileWriter$AppendWriteException: java.lang.NullPointerException: null of long in field longField of Test
+2972 [main] INFO org.apache.avro.TestDataFile - Running with codec: deflate-1
+2996 [main] INFO org.apache.avro.TestDataFile - Running with codec: deflate-1
+3001 [main] INFO org.apache.avro.TestDataFile - Running with codec: deflate-9
+Ignoring: org.apache.avro.file.DataFileWriter$AppendWriteException: java.lang.NullPointerException: null of long in field longField of Test
+3217 [main] INFO org.apache.avro.TestDataFile - Running with codec: deflate-9
+3225 [main] INFO org.apache.avro.TestDataFile - Running with codec: deflate-9
+3228 [main] INFO org.apache.avro.TestDataFile - Running with codec: null
+Ignoring: org.apache.avro.file.DataFileWriter$AppendWriteException: java.lang.NullPointerException: null of long in field longField of Test
+3413 [main] INFO org.apache.avro.TestDataFile - Running with codec: null
+3420 [main] INFO org.apache.avro.TestDataFile - Running with codec: null
+3425 [main] INFO org.apache.avro.TestDataFile - Running with codec: snappy
+Ignoring: org.apache.avro.file.DataFileWriter$AppendWriteException: java.lang.NullPointerException: null of long in field longField of Test
+3851 [main] INFO org.apache.avro.TestDataFile - Running with codec: snappy
+3864 [main] INFO org.apache.avro.TestDataFile - Running with codec: snappy

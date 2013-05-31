@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="5.4">
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/thrift/src/main/java/org/apache/avro/thrift/ThriftData.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/thrift/src/main/java/org/apache/avro/thrift/ThriftDatumReader.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/thrift/src/main/java/org/apache/avro/thrift/ThriftDatumWriter.java">
+</file>
+</checkstyle>

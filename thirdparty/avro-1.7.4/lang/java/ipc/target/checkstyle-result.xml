@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="5.4">
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/ipc/src/main/java/org/apache/avro/ipc/Callback.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/ipc/src/main/java/org/apache/avro/ipc/CallFuture.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/ipc/src/main/java/org/apache/avro/ipc/DatagramServer.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/ipc/src/main/java/org/apache/avro/ipc/DatagramTransceiver.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/ipc/src/main/java/org/apache/avro/ipc/generic/GenericRequestor.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/ipc/src/main/java/org/apache/avro/ipc/generic/GenericResponder.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/ipc/src/main/java/org/apache/avro/ipc/HttpServer.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/ipc/src/main/java/org/apache/avro/ipc/HttpTransceiver.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/ipc/src/main/java/org/apache/avro/ipc/Ipc.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/ipc/src/main/java/org/apache/avro/ipc/LocalTransceiver.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/ipc/src/main/java/org/apache/avro/ipc/NettyServer.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/ipc/src/main/java/org/apache/avro/ipc/NettyTransceiver.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/ipc/src/main/java/org/apache/avro/ipc/NettyTransportCodec.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/ipc/src/main/java/org/apache/avro/ipc/reflect/ReflectRequestor.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/ipc/src/main/java/org/apache/avro/ipc/reflect/ReflectResponder.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/ipc/src/main/java/org/apache/avro/ipc/Requestor.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/ipc/src/main/java/org/apache/avro/ipc/Responder.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/ipc/src/main/java/org/apache/avro/ipc/ResponderServlet.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/ipc/src/main/java/org/apache/avro/ipc/RPCContext.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/ipc/src/main/java/org/apache/avro/ipc/RPCPlugin.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/ipc/src/main/java/org/apache/avro/ipc/SaslSocketServer.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/ipc/src/main/java/org/apache/avro/ipc/SaslSocketTransceiver.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/ipc/src/main/java/org/apache/avro/ipc/Server.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/ipc/src/main/java/org/apache/avro/ipc/SocketServer.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/ipc/src/main/java/org/apache/avro/ipc/SocketTransceiver.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/ipc/src/main/java/org/apache/avro/ipc/specific/SpecificRequestor.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/ipc/src/main/java/org/apache/avro/ipc/specific/SpecificResponder.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/ipc/src/main/java/org/apache/avro/ipc/stats/FloatHistogram.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/ipc/src/main/java/org/apache/avro/ipc/stats/Histogram.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/ipc/src/main/java/org/apache/avro/ipc/stats/IntegerHistogram.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/ipc/src/main/java/org/apache/avro/ipc/stats/StaticServlet.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/ipc/src/main/java/org/apache/avro/ipc/stats/StatsPlugin.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/ipc/src/main/java/org/apache/avro/ipc/stats/StatsServer.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/ipc/src/main/java/org/apache/avro/ipc/stats/StatsServlet.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/ipc/src/main/java/org/apache/avro/ipc/stats/Stopwatch.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/ipc/src/main/java/org/apache/avro/ipc/trace/FileSpanStorage.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/ipc/src/main/java/org/apache/avro/ipc/trace/InMemorySpanStorage.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/ipc/src/main/java/org/apache/avro/ipc/trace/SpanAggregator.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/ipc/src/main/java/org/apache/avro/ipc/trace/SpanStorage.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/ipc/src/main/java/org/apache/avro/ipc/trace/StaticServlet.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/ipc/src/main/java/org/apache/avro/ipc/trace/Trace.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/ipc/src/main/java/org/apache/avro/ipc/trace/TraceClientServlet.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/ipc/src/main/java/org/apache/avro/ipc/trace/TraceCollection.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/ipc/src/main/java/org/apache/avro/ipc/trace/TraceNode.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/ipc/src/main/java/org/apache/avro/ipc/trace/TracePlugin.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/ipc/src/main/java/org/apache/avro/ipc/trace/TracePluginConfiguration.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/ipc/src/main/java/org/apache/avro/ipc/trace/Util.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/ipc/src/main/java/org/apache/avro/ipc/Transceiver.java">
+</file>
+</checkstyle>

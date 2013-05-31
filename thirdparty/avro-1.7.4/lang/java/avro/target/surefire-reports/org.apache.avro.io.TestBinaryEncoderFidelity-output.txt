@@ -1,0 +1,3 @@
+BufferedBinaryEncoder buffered: 312
+DirectBinaryEncoder buffered: 0
+BlockingBinaryEncoder buffered: 312

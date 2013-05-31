@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="5.4">
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/compiler/src/main/java/org/apache/avro/compiler/specific/ProtocolTask.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/compiler/src/main/java/org/apache/avro/compiler/specific/SchemaTask.java">
+</file>
+<file name="/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/compiler/src/main/java/org/apache/avro/compiler/specific/SpecificCompiler.java">
+</file>
+</checkstyle>

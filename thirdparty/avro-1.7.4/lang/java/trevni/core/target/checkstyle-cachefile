@@ -1,0 +1,27 @@
+#Tue May 21 04:19:48 CEST 2013
+/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/core/src/main/java/org/apache/trevni/Input.java=1347399356000
+/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/core/src/main/java/org/apache/trevni/ColumnFileMetaData.java=1347399356000
+/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/core/src/main/java/org/apache/trevni/ColumnMetaData.java=1347399356000
+/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/core/src/main/java/org/apache/trevni/MetaData.java=1347399356000
+/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/core/src/main/java/org/apache/trevni/ColumnFileReader.java=1347399356000
+/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/core/src/main/java/org/apache/trevni/OutputBuffer.java=1358537674000
+/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/core/src/main/java/org/apache/trevni/ValueType.java=1358537674000
+/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/core/src/main/java/org/apache/trevni/BlockDescriptor.java=1347399356000
+/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/core/src/main/java/org/apache/trevni/SnappyCodec.java=1347399356000
+/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/core/src/main/java/org/apache/trevni/DeflateCodec.java=1347399356000
+/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/core/src/main/java/org/apache/trevni/Codec.java=1360874869000
+/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/core/src/main/java/org/apache/trevni/Crc32Checksum.java=1347399356000
+/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/core/src/main/java/org/apache/trevni/NullCodec.java=1347399356000
+/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/core/src/main/java/org/apache/trevni/Checksum.java=1347399356000
+/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/core/src/main/java/org/apache/trevni/TrevniRuntimeException.java=1347399356000
+/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/core/src/main/java/org/apache/trevni/InputBuffer.java=1360015125000
+configuration*?=AACB7338F9B2B6D5FCCF7325E657017511315E17
+/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/core/src/main/java/org/apache/trevni/ColumnFileWriter.java=1347399356000
+/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/core/src/main/java/org/apache/trevni/InputFile.java=1347399356000
+/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/core/src/main/java/org/apache/trevni/ColumnValues.java=1358537674000
+/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/core/src/main/java/org/apache/trevni/ArrayColumnOutputBuffer.java=1358537674000
+/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/core/src/main/java/org/apache/trevni/NullChecksum.java=1347399356000
+/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/core/src/main/java/org/apache/trevni/BZip2Codec.java=1360874869000
+/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/core/src/main/java/org/apache/trevni/InputBytes.java=1347399356000
+/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/core/src/main/java/org/apache/trevni/ColumnDescriptor.java=1347399356000
+/opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/trevni/core/src/main/java/org/apache/trevni/ColumnOutputBuffer.java=1347399356000
