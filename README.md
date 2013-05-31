@@ -37,12 +37,12 @@ Make sure that the Oracle Java Development Kit 6 is installed (not OpenJDK), and
 
 ### Install Maven
 
-    wget http://www.fightrice.com/mirrors/apache/maven/maven-3/3.0.4/binaries/apache-maven-3.0.4-bin.tar.gz
-    tar xvf apache-maven-3.0.4.tar.gz && sudo mv apache-maven-3.0.4 /usr/local
+    wget http://www.fightrice.com/mirrors/apache/maven/maven-3/3.0.5/binaries/apache-maven-3.0.5-bin.tar.gz
+    tar xvf apache-maven-3.0.5.tar.gz && sudo mv apache-maven-3.0.5 /usr/local
 
 Add the following three lines to your .bashrc:
 
-    export M2_HOME=/usr/local/apache-maven-3.0.4
+    export M2_HOME=/usr/local/apache-maven-3.0.5
     export M2=$M2_HOME/bin
     export PATH=$M2:$PATH
 
@@ -56,13 +56,13 @@ Confirm by running:
 
 and you should see at least:
 
-    Apache Maven 3.0.4...
+    Apache Maven 3.0.5...
 
 ## Building Cloudera Impala
 
 ### Clone the Impala repository
 
-    git clone https://github.com/cloudera/impala.git
+    git clone https://github.com/{fork}/impala.git
 
 ### Set the Impala environment
 
@@ -72,15 +72,16 @@ and you should see at least:
 Confirm your environment looks correct:
 
     (11:11:21@desktop) ~/src/cloudera/impala-public (master) $ env | grep "IMPALA.*VERSION"
-    IMPALA_CYRUS_SASL_VERSION=2.1.23
-    IMPALA_HBASE_VERSION=0.92.1-cdh4.1.0
+    IMPALA_CYRUS_SASL_VERSION=2.1.25
+    IMPALA_HBASE_VERSION=0.94.5-mapr
     IMPALA_SNAPPY_VERSION=1.0.5
     IMPALA_GTEST_VERSION=1.6.0
     IMPALA_GPERFTOOLS_VERSION=2.0
     IMPALA_GFLAGS_VERSION=2.0
     IMPALA_GLOG_VERSION=0.3.2
-    IMPALA_HADOOP_VERSION=2.0.0-cdh4.1.0
-    IMPALA_HIVE_VERSION=0.9.0-cdh4.1.0
+    IMPALA_HADOOP_VERSION_MVN=1.0.3-mapr-2.1.2.1
+    IMPALA_HADOOP_VERSION=0.20.2-mapr
+    IMPALA_HIVE_VERSION=0.10.0-mapr
     IMPALA_MONGOOSE_VERSION=3.3
     IMPALA_THRIFT_VERSION=0.9.0
 
