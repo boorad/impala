@@ -59,13 +59,17 @@ wget http://mongoose.googlecode.com/files/mongoose-${IMPALA_MONGOOSE_VERSION}.tg
 tar xzf mongoose-${IMPALA_MONGOOSE_VERSION}.tgz
 rm mongoose-${IMPALA_MONGOOSE_VERSION}.tgz
 
-# TODO: mapr tarball
-#echo "Fetching Apache Hive"
-#wget http://archive.cloudera.com/cdh4/cdh/4/hive-${IMPALA_HIVE_VERSION}.tar.gz
-#tar xzf hive-${IMPALA_HIVE_VERSION}.tar.gz
-#rm hive-${IMPALA_HIVE_VERSION}.tar.gz
+echo "Fetching Apache Hive"
+wget https://github.com/mapr/hive/archive/${IMPALA_HIVE_VERSION}.zip
+unzip ${IMPALA_HIVE_VERSION}.zip
+rm ${IMPALA_HIVE_VERSION}.zip
 
 echo "Fetching Apache Thrift"
 wget http://archive.apache.org/dist/thrift/${IMPALA_THRIFT_VERSION}/thrift-${IMPALA_THRIFT_VERSION}.tar.gz
 tar xzf thrift-${IMPALA_THRIFT_VERSION}.tar.gz
 rm thrift-${IMPALA_THRIFT_VERSION}.tar.gz
+
+echo "Fetching Apache Avro"
+wget http://archive.apache.org/dist/avro/avro-${IMPALA_AVRO_VERSION}/avro-src-${IMPALA_AVRO_VERSION}.tar.gz
+tar xzf avro-src-${IMPALA_AVRO_VERSION}.tar.gz
+rm avro-src-${IMPALA_AVRO_VERSION}.tar.gz
