@@ -1,1 +1,0 @@
-{ "name": "Foo", "type": "record",   "fields": [ {"name": "package", "type": "string" },                {"name": "short", "type": "Foo" } ] }

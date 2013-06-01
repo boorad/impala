@@ -1,2 +1,0 @@
-[INFO] Importing Directory: /opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/maven-plugin/src/test/avro/imports
-[INFO] Importing File: /opt/mapr/impala/impala-1.0/thirdparty/avro-src-1.7.4/lang/java/maven-plugin/src/test/avro/directImport/PrivacyDirectImport.avsc

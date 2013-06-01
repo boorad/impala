@@ -1,1 +1,0 @@
-/usr/bin/c++   -Wall -O3 -DNDEBUG  -fPIC CMakeFiles/buffertest.dir/test/buffertest.cc.o  -o buffertest -rdynamic libavrocpp.so.1.7.4.0 -lboost_filesystem-gcc44-mt-1_42 -lboost_system-gcc44-mt-1_42 -lboost_program_options-gcc44-mt-1_42 -Wl,-rpath,/home/vagrant/impala/thirdparty/avro-1.7.4/lang/c++ 
