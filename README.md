@@ -38,7 +38,7 @@ Make sure that the Oracle Java Development Kit 6 is installed (not OpenJDK), and
 ### Install Maven
 
     wget http://www.fightrice.com/mirrors/apache/maven/maven-3/3.0.5/binaries/apache-maven-3.0.5-bin.tar.gz
-    tar xvf apache-maven-3.0.5.tar.gz && sudo mv apache-maven-3.0.5 /usr/local
+    tar xvf apache-maven-3.0.5-bin.tar.gz && sudo mv apache-maven-3.0.5 /usr/local
 
 Add the following three lines to your .bashrc:
 
